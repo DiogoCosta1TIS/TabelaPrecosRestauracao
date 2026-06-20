@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diogo Costa | Web Design & Redes Sociais</title>
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <style>
+        :root {
+            --bg-color: #0d0d11;
+            --surface-color: #16161f;
+            --accent-color: #3b82f6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: #27273a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 0;
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+        }
+
+        section {
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 35px;
+            background-color: var(--surface-color);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 18px 24px;
+        }
+
+        th {
+            background-color: rgba(255, 255, 255, 0.02);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            border-bottom: 1px solid rgba(39, 39, 58, 0.5);
+            font-size: 0.95rem;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        td strong {
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        td ul {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        td ul li {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+            padding-left: 12px;
+            position: relative;
+        }
+
+        td ul li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        .price-tag {
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .note {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background-color: rgba(255, 255, 255, 0.01);
+            padding: 15px 20px;
+            border-left: 2px solid var(--border-color);
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 35px;
+        }
+
+        .grid-portfolio {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-portfolio {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .portfolio-item {
+            background-color: var(--surface-color);
+            padding: 30px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 180px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-2px);
+            background-color: #1c1c27;
+        }
+
+        .portfolio-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .portfolio-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .btn-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .btn-link:hover {
+            text-decoration: underline;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background-color: var(--text-main);
+            color: var(--bg-color);
+            padding: 16px 32px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-main:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <header>
+            <h1>Diogo Costa</h1>
+            <p>Criação de sites profissionais, ementas digitais interativas e gestão de redes sociais para negócios e restaurantes.</p>
+        </header>
+
+        <section class="animate-section">
+            <h2>Preços de Sites e Ementas Digitais</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Opção</th>
+                            <th>O que está incluído no site</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Opção 1</strong></td>
+                            <td>
+                                Estrutura essencial para o negócio estar na internet.
+                                <ul>
+                                    <li>Página Inicial: Apresentação simples do espaço.</li>
+                                    <li>Página de Ementa: Lista completa de pratos e preços.</li>
+                                    <li>Página de Contactos: Botões diretos para WhatsApp e chamada.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">150€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opção 2</strong></td>
+                            <td>
+                                Estrutura com informações detalhadas e localização.
+                                <ul>
+                                    <li>Página Inicial: Apresentação do espaço e conceito.</li>
+                                    <li>Página de Ementa: Lista completa de pratos e preços.</li>
+                                    <li>Página Quem Somos: História do restaurante.</li>
+                                    <li>Página de Contactos: Botões de ligação e mapa interativo da localização.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">190€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opção 3</strong></td>
+                            <td>
+                                Solução focada em conteúdo visual e redes sociais.
+                                <ul>
+                                    <li>Página Inicial: Destaques principais e novidades fixas.</li>
+                                    <li>Página de Ementa: Lista completa dividida por categorias.</li>
+                                    <li>Página Quem Somos: História do restaurante.</li>
+                                    <li>Página Galeria: Fotos do espaço e dos pratos.</li>
+                                    <li>Página de Contactos: Mapa interativo e integração direta com o vosso Instagram.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">230€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opção 4</strong></td>
+                            <td>
+                                Solução com sistema de envio de pré-reservas digitais.
+                                <ul>
+                                    <li>Página Inicial: Destaques principais e novidades.</li>
+                                    <li>Página de Ementa: Lista completa dividida por categorias.</li>
+                                    <li>Página Quem Somos: História do restaurante.</li>
+                                    <li>Página Galeria: Fotos do espaço e dos pratos.</li>
+                                    <li>Página de Contactos: Mapa interativo e integração direta com o Instagram.</li>
+                                    <li>Sistema de Reserva: Formulário inteligente no site para pedido de reserva de mesas enviado para o vosso contacto.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">320€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Opção 5</strong></td>
+                            <td>
+                                Sistema tecnológico completo com pedidos por QR Code.
+                                <ul>
+                                    <li>Página Inicial, Ementa, Quem Somos, Galeria e Contactos com mapa.</li>
+                                    <li>Integração de QR Code: Códigos para colocar nas mesas do restaurante.</li>
+                                    <li>Pedidos Digitais: O cliente faz o pedido no telemóvel através do QR Code e este sai direto no ecrã ou painel da cozinha.</li>
+                                    <li>Gestão de Pedidos: Painel integrado para controlar os pedidos das mesas em tempo real.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">450€</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Personalizado</strong></td>
+                            <td>
+                                Projeto feito totalmente à medida.
+                                <ul>
+                                    <li>Escolha livre de páginas, ferramentas e funções de acordo com a sua necessidade.</li>
+                                    <li>Reunião para alinhar todos os detalhes necessários.</li>
+                                </ul>
+                            </td>
+                            <td class="price-tag">Sob Consulta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="animate-section">
+            <h2>Planos de Manutenção e Alterações</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Opção</th>
+                            <th>Tipo de suporte incluído</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Manutenção 1</strong></td>
+                            <td>Atualização de preços, adição ou remoção de pratos da ementa com revisões mensais.</td>
+                            <td class="price-tag">15€ / mês</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manutenção 2</strong></td>
+                            <td>Atualização de preços, alteração de produtos da ementa e suporte com revisões semanais.</td>
+                            <td class="price-tag">25€ / mês</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manutenção 3</strong></td>
+                            <td>Alterações urgentes de ementa ou preços com suporte prioritário. Horário flexível e disponível quase no imediato para resolver problemas rapidamente.</td>
+                            <td class="price-tag">35€ / mês</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="note">
+                Nota: O registo do nome do site (.pt ou .com) e o alojamento anual têm um custo fixo de cerca de 30€ por ano.
+            </div>
+        </section>
+
+        <section class="animate-section">
+            <h2>Gestão de Redes Sociais (Instagram)</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Serviço</th>
+                            <th>O que faço na vossa página</th>
+                            <th>Preço</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gestão de Conteúdo</strong></td>
+                            <td>Criação de publicações e stories visando destacar pratos, horários e promoções. Ajuste da biografia, organização de destaques e agendamento de posts para manter a página ativa.</td>
+                            <td class="price-tag">Sob consulta</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="animate-section">
+            <h2>Modelos de exemplo</h2>
+            <div class="grid-portfolio">
+                <div class="portfolio-item">
+                    <div>
+                        <h3>Giramassa</h3>
+                        <p>Ementa digital desenvolvida para pizzaria e pastelaria.</p>
+                    </div>
+                    <a href="https://giramassa.free.nf/" target="_blank" class="btn-link">Ver site</a>
+                </div>
+                <div class="portfolio-item">
+                    <div>
+                        <h3>Mikas Restaurante</h3>
+                        <p>Interface e ementa digital otimizada para restauração.</p>
+                    </div>
+                    <a href="https://restaurantemikas.gt.tc/" target="_blank" class="btn-link">Ver site</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section animate-section">
+            <a href="https://wa.me/351939677060" target="_blank" class="btn-main">Pedir Orçamento</a>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll('.animate-section');
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
